@@ -1,15 +1,14 @@
 package com.network.external.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class BusinessBody {
-    private List<String> b_no = new ArrayList<>();
+    private List<String> b_no;
 }
