@@ -21,13 +21,13 @@ import java.util.Map;
 public class RestNetwork {
     private static RestTemplate restTemplate = new RestTemplate();
 
-    private static <T> HttpEntity entity(T input,HttpHeaders headers){
+    private static <T> HttpEntity entity(T input, HttpHeaders headers) {
         return new HttpEntity<T>(input, headers);
     }
 
     public static String get(String apiUrl, Map<String, ?> params) {
         try {
-            return restTemplate.exchange(apiUrl, HttpMethod.GET, entity("",headers(false)), String.class, params).getBody();
+            return restTemplate.exchange(apiUrl, HttpMethod.GET, entity("", headers(false)), String.class, params).getBody();
         } catch (HttpStatusCodeException e) {
             return null;
         }
@@ -35,7 +35,7 @@ public class RestNetwork {
 
     public static <T> String post(String apiUrl, T body) {
         try {
-            return restTemplate.exchange(apiUrl, HttpMethod.POST, entity(body,headers(false)), String.class).getBody();
+            return restTemplate.exchange(apiUrl, HttpMethod.POST, entity(body, headers(false)), String.class).getBody();
         } catch (HttpStatusCodeException e) {
             return null;
         }
@@ -43,15 +43,15 @@ public class RestNetwork {
 
     public static <T> String post(String apiUrl, T body, HttpHeaders headers) {
         try {
-            return restTemplate.exchange(apiUrl, HttpMethod.POST, entity(body,headers), String.class).getBody();
+            return restTemplate.exchange(apiUrl, HttpMethod.POST, entity(body, headers), String.class).getBody();
         } catch (HttpStatusCodeException e) {
             return null;
         }
     }
 
-    public static <T> String post(String apiUrl, T body,Map<String, ?> params) {
+    public static <T> String post(String apiUrl, T body, Map<String, ?> params) {
         try {
-            return restTemplate.exchange(apiUrl, HttpMethod.POST, entity(body,headers(false)), String.class,params).getBody();
+            return restTemplate.exchange(apiUrl, HttpMethod.POST, entity(body, headers(false)), String.class, params).getBody();
         } catch (HttpStatusCodeException e) {
             return null;
         }
@@ -59,7 +59,7 @@ public class RestNetwork {
 
     public static <T> String post(String apiUrl, MultiValueMap<String, String> formData) {
         try {
-            return restTemplate.exchange(apiUrl, HttpMethod.POST, entity(formData,headers(true)), String.class).getBody();
+            return restTemplate.exchange(apiUrl, HttpMethod.POST, entity(formData, headers(true)), String.class).getBody();
         } catch (HttpStatusCodeException e) {
             return null;
         }
@@ -68,9 +68,9 @@ public class RestNetwork {
     /* External Http Headers */
     private static HttpHeaders headers(boolean isFormData) {
         HttpHeaders headers = new HttpHeaders();
-        if(!isFormData){
+        if (!isFormData) {
             headers.setAccept(List.of(MediaType.APPLICATION_JSON));
-        }else{
+        } else {
             headers.setAccept(List.of(MediaType.APPLICATION_FORM_URLENCODED));
         }
         return headers;
@@ -79,8 +79,8 @@ public class RestNetwork {
     public static HttpHeaders headersKeygen() {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
-        headers.add("ApiKey","54738d3f9a85d609c22de0e1f365f194dad0808d8fe3eaf1eb");
-        headers.add("TOKEN","eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfX2NpX2xhc3RfcmVnZW5lcmF0ZSI6MTY3NzU4OTQ4OSwidXNlciI6ImV4dGdjMWEyYXA2IiwiaWF0IjoxNjc3NTg5NDg5LCJleHAiOjE2Nzc1OTMwODl9.FgfL9XflKhPI_dys75BMOeRGUlf1Iv3n8Ntt7dCbpSo");
+        headers.add("ApiKey", "54738d3f9a85d609c22de0e1f365f194dad0808d8fe3eaf1eb");
+        headers.add("TOKEN", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfX2NpX2xhc3RfcmVnZW5lcmF0ZSI6MTY3NzU4OTQ4OSwidXNlciI6ImV4dGdjMWEyYXA2IiwiaWF0IjoxNjc3NTg5NDg5LCJleHAiOjE2Nzc1OTMwODl9.FgfL9XflKhPI_dys75BMOeRGUlf1Iv3n8Ntt7dCbpSo");
         return headers;
     }
 
@@ -91,12 +91,12 @@ public class RestNetwork {
     public static String API_BILL_KEYGEN = "https://www.cookiepayments.com/Subscribe/billkeygen";
 
     /* External Http Parameters */
-    public static Map<String, ?> paramsEmpty(){
+    public static Map<String, ?> paramsEmpty() {
         return new HashMap<>();
     }
 
-    public static MultiValueMap<String, String> paramsAligo(AligoBody aligoBody){
-        MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
+    public static MultiValueMap<String, String> paramsAligo(AligoBody aligoBody) {
+        MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
         map.add("key", aligoBody.getKey());
         map.add("user_id", aligoBody.getUser_id());
         map.add("sender", aligoBody.getSender());
@@ -106,7 +106,7 @@ public class RestNetwork {
         return map;
     }
 
-    public static Map<String, String> paramsBusiness(){
+    public static Map<String, String> paramsBusiness() {
         Map<String, String> map = new HashMap<>();
         map.put("serviceKey", "0YtQXA8on6K65ywxHGiY7nGq3iNOBv9faxgAYtqFJv4hDMAD6Tad5cXsXCyOuUwJ6kg2GaAVSVLQ75Gi7aWm4Q%3D%3D");
         map.put("returnType", "JSON");
